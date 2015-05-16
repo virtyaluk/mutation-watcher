@@ -155,18 +155,18 @@ If **[watch()](#watch)** called without the options or it's `null` then default 
 
 `MutationData` is the object that will be passed to the observer's `callback`. It has the following properties:
 
-| **Property** | **Type** | **Description** |
-| :- | :- | :- |
-| type | String | Returns `attributes` if the mutation was an attribute mutation, `characterData` if it was a mutation to a CharacterData node, and `elements` if it was a mutation to the tree of nodes. |
-| target | [Node](https://developer.mozilla.org/en-US/docs/Web/API/Node "Node") | Returns the node the mutation affected, depending on the type. For attributes, it is the element whose attribute changed. For characterData, it is the CharacterData node. For elements, it is the node whose children changed. |
-| addedNodes | [NodeList](https://developer.mozilla.org/en-US/docs/Web/API/NodeList "NodeList") | Return the nodes added. Will be a `null` if no nodes were added.|
-| removedNodes | [NodeList](https://developer.mozilla.org/en-US/docs/Web/API/NodeList "NodeList") | Return the nodes removed. Will be a `null` if no nodes were removed. |
-| previousSibling | [Node](https://developer.mozilla.org/en-US/docs/Web/API/Node "Node") | Return the previous sibling of the added or removed nodes, or `null`. |
-| nextSibling | [Node](https://developer.mozilla.org/en-US/docs/Web/API/Node "Node") | Return the next sibling of the added or removed nodes, or `null`. |
-| attributeName | String | Returns the local name of the changed attribute, or `null`. |
-| attributeNamespace | String | Returns the namespace of the changed attribute, or `null`. |
-| oldValue | String | The return value depends on the type. For attributes, it is the value of the changed attribute before the change. For characterData, it is the data of the changed node before the change. For elements, it is `null`. |
-| newValue | String | The return value dependents on the type. For attributes, it is the value of the changed attribute after the change. For chracterData, it is the data of the changed node after the cahnge. For elements, it is `null`. |
+ **Property** | **Type** | **Description** 
+ --- | --- | --- 
+ type | String | Returns `attributes` if the mutation was an attribute mutation, `characterData` if it was a mutation to a CharacterData node, and `elements` if it was a mutation to the tree of nodes. 
+ target | [Node](https://developer.mozilla.org/en-US/docs/Web/API/Node "Node") | Returns the node the mutation affected, depending on the type. For attributes, it is the element whose attribute changed. For characterData, it is the CharacterData node. For elements, it is the node whose children changed. 
+ addedNodes | [NodeList](https://developer.mozilla.org/en-US/docs/Web/API/NodeList "NodeList") | Return the nodes added. Will be a `null` if no nodes were added.
+ removedNodes | [NodeList](https://developer.mozilla.org/en-US/docs/Web/API/NodeList "NodeList") | Return the nodes removed. Will be a `null` if no nodes were removed. 
+ previousSibling | [Node](https://developer.mozilla.org/en-US/docs/Web/API/Node "Node") | Return the previous sibling of the added or removed nodes, or `null`. 
+ nextSibling | [Node](https://developer.mozilla.org/en-US/docs/Web/API/Node "Node") | Return the next sibling of the added or removed nodes, or `null`. 
+ attributeName | String | Returns the local name of the changed attribute, or `null`. 
+ attributeNamespace | String | Returns the namespace of the changed attribute, or `null`. 
+ oldValue | String | The return value depends on the type. For attributes, it is the value of the changed attribute before the change. For characterData, it is the data of the changed node before the change. For elements, it is `null`. 
+ newValue | String | The return value dependents on the type. For attributes, it is the value of the changed attribute after the change. For chracterData, it is the data of the changed node after the cahnge. For elements, it is `null`. 
 
 ### Custom Events
 
