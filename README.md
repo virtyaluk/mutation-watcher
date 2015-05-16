@@ -43,13 +43,13 @@ MutationWatcher(
 ###### Note
 
 If the class instance created without any argument, then `customEvents` will be set to `true` by default.
-If no `callback` provided or it's `null` then all **[MutationData](#mutationdata)** objects will be added to queue and available to return using **[takeRecords](#takerecords-)** method.
+If no `callback` provided or it's `null` then all **[MutationData](#mutationdata)** objects will be added to queue and available to return using **[takeRecords](#takerecords)** method.
 
 ### Instance methods
 
-- void [watch](#watch-)( Object target, Object options );
-- void [disconnect](#disconnect-)();
-- Array [takeRecords](#takerecords-)();
+- void [watch](#watch)( Object target, Object options );
+- void [disconnect](#disconnect)();
+- Array [takeRecords](#takerecords)();
 
 ##### watch() #####
 
@@ -75,7 +75,7 @@ If `options` object not provided then default **[options](#mutationwatcher-optio
 
 ##### disconnect()
 
-Stops the `MutationWatcher` instance from receiving notifications of DOM mutations. Until the **[watch()](#watch-)** method is used again, watcher's callback will not be invoked.
+Stops the `MutationWatcher` instance from receiving notifications of DOM mutations. Until the **[watch()](#watch)** method is used again, watcher's callback will not be invoked.
 
 ```js
 void disconnect();
@@ -108,7 +108,7 @@ Returns an Array of **[MutationData](#mutationdata)** objects.
 
 #### Default options and Example usage
 
-Options can be passed to **[watch()](#watch-)** method as a plain string with single option or as an object with combination of options.
+Options can be passed to **[watch()](#watch)** method as a plain string with single option or as an object with combination of options.
 
 ```js
 // Single option can be passed as a string:
@@ -129,7 +129,7 @@ optionsObj = {
 };
 ```
 
-If **[watch()](#watch-)** called without the options or it's `null` then default options will be used. The default options object looks following:
+If **[watch()](#watch)** called without the options or it's `null` then default options will be used. The default options object looks following:
 
 ```js
 // Default options:
@@ -173,7 +173,7 @@ If **[watch()](#watch-)** called without the options or it's `null` then default
 It's possible to subscribe to custom mutation events instead of using `callback` passed to constructor.
 Default event names can be changed using static object called `customEventsNames` on **MutationWatcher** class.
 
-To enable custom events on specific target, it needs to set `customEvents` property to `true` and invoke **[watch()](#watch-)** method with or without any arguments.
+To enable custom events on specific target, it needs to set `customEvents` property to `true` and invoke **[watch()](#watch)** method with or without any arguments.
 
 ```js
 var watcher = new MutationWatcher(null,  true);
