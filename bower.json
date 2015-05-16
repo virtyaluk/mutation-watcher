@@ -1,0 +1,32 @@
+{
+  "name": "mutation-watcher",
+  "version": "1.0.1",
+  "homepage": "https://github.com/virtyaluk/mutation-watcher",
+  "authors": [
+    "virtyaluk <winsatana@gmail.com>"
+  ],
+  "description": "MutationWatcher is a JavaScript library that comes to help make DOM mutation observing fast and easy.",
+  "main": "mutation-watcher.js",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "mutation observer",
+    "mutation",
+    "dom",
+    "mutation",
+    "mutation watcher",
+    "mutation events",
+    "events"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

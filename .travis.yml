@@ -1,0 +1,15 @@
+sudo: false
+language: node_js
+node_js:
+  - "0.10"
+  
+before_script:
+  - npm install -g grunt-cli
+  
+install: npm install
+  
+before_script: grunt build
+  
+addons:
+  code_climate:
+    repo_token: d86f654b31db07f0751f221e9c13b33a7c6377f2f62707eea38757391346f6f7

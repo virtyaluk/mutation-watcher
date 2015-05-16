@@ -1,0 +1,46 @@
+{
+  "name": "mutation-watcher",
+  "version": "1.0.1",
+  "description": "MutationWatcher is a JavaScript library that comes to help make DOM mutation observing fast and easy.",
+  "main": "mutation-watcher.js",
+  "homepage": "https://github.com/virtyaluk/mutation-watcher",
+  "author": {
+    "name": "Bohdan Shtepan",
+    "email": "virtydev@yandex.com"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "grunt travis --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/virtyaluk/mutation-watcher.git"
+  },
+  "keywords": [
+    "mutation",
+    "mutation events",
+    "mutation observer",
+    "mutation watcher",
+    "dom",
+    "mutation"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/virtyaluk/mutation-watcher/blob/master/LICENSE"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/virtyaluk/mutation-watcher/issues"
+  },
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "grunt": "^0.4.5",
+    "grunt-contrib-uglify": "^0.9.1",
+    "grunt-mocha-phantomjs": "^0.6.1",
+    "mocha": "^2.2.4",
+    "mutationobserver-shim": "^0.3.1"
+  }
+}

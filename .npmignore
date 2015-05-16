@@ -1,0 +1,7 @@
+node_modules
+test
+.DS_Store
+.travis.yml
+.codeclimate.yml
+bowe.json
+.jshintrc
