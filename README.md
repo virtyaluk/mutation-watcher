@@ -1,5 +1,5 @@
 # MutationWatcher 
-[![Build Status](https://travis-ci.org/virtyaluk/mutation-watcher.svg)](https://travis-ci.org/virtyaluk/mutation-watcher) [![Dependency Status](https://gemnasium.com/virtyaluk/mutation-watcher.svg)](https://gemnasium.com/virtyaluk/mutation-watcher) [![Code Climate](https://codeclimate.com/github/virtyaluk/mutation-watcher/badges/gpa.svg)](https://codeclimate.com/github/virtyaluk/mutation-watcher) [![Coverage Status](https://coveralls.io/repos/virtyaluk/mutation-watcher/badge.svg)](https://coveralls.io/r/virtyaluk/mutation-watcher) [![Test Coverage](https://codeclimate.com/github/virtyaluk/mutation-watcher/badges/coverage.svg)](https://codeclimate.com/github/virtyaluk/mutation-watcher/coverage)
+[![Build Status](https://travis-ci.org/virtyaluk/mutation-watcher.svg)](https://travis-ci.org/virtyaluk/mutation-watcher) [![Dependency Status](https://gemnasium.com/virtyaluk/mutation-watcher.svg)](https://gemnasium.com/virtyaluk/mutation-watcher) [![Code Climate](https://codeclimate.com/github/virtyaluk/mutation-watcher/badges/gpa.svg)](https://codeclimate.com/github/virtyaluk/mutation-watcher)
 
 **MutationWatcher** is a JavaScript library that comes to help make DOM mutation observing fast and easy.
 
