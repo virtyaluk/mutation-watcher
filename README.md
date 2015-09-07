@@ -6,7 +6,7 @@
 
 > **MutationWatcher** is a JavaScript library that comes to help make DOM mutation observing fast and easy.
 
-[![Build Status](https://travis-ci.org/virtyaluk/mutation-watcher.svg)](https://travis-ci.org/virtyaluk/mutation-watcher) [![Dependency Status](https://gemnasium.com/virtyaluk/mutation-watcher.svg)](https://gemnasium.com/virtyaluk/mutation-watcher) [![Code Climate](https://codeclimate.com/github/virtyaluk/mutation-watcher/badges/gpa.svg)](https://codeclimate.com/github/virtyaluk/mutation-watcher)
+[![Build Status](https://travis-ci.org/virtyaluk/mutation-watcher.svg)](https://travis-ci.org/virtyaluk/mutation-watcher) [![Code Climate](https://codeclimate.com/github/virtyaluk/mutation-watcher/badges/gpa.svg)](https://codeclimate.com/github/virtyaluk/mutation-watcher) [![Dependency Status](https://gemnasium.com/virtyaluk/mutation-watcher.svg)](https://gemnasium.com/virtyaluk/mutation-watcher)
 
 **MutationWatcher** uses [MutationObserver API](https://developer.mozilla.org/en/docs/Web/API/MutationObserver "MutationObserver API") (in new browsers) or old-fashioned (deprecated) way with [Mutation events](https://developer.mozilla.org/en-US/docs/DOM/Mutation_events "Mutation events") (in browsers that doesn't support newest API) as a way to react to changes in DOM. Actually it works in all browsers that support any of this APIs.
 
