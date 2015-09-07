@@ -1,19 +1,39 @@
-"use strict";
-module.exports = function (grunt) {
+module.exports = function(grunt) {
+    'use strict';
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        eslint: {
+            target: ['<%= pkg.main %>', 'Gruntfile.js', 'test/test.js']
+        },
         uglify: {
             build: {
                 options: {
-                    banner: '/* \r\n * <%= pkg.name %> \r\n * <%= pkg.homepage %> \r\n * \r\n * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %> \r\n * Licensed under the <%= pkg.licenses.type %> license. \r\n */\n\n',
+                    compress: {
+                        properties: true,
+                        drop_debugger: true,
+                        conditionals: true,
+                        booleans: true,
+                        loops: true,
+                        unused: true,
+                        join_vars: true,
+                        drop_console: true
+                    },
+                    preserveComments: false,
+                    screwIE8: true,
+                    banner: '/** \r\n * <%= pkg.name %> <%= pkg.version %> \r\n * <%= pkg.homepage %> \r\n' +
+                    ' * \r\n * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %> \r\n' +
+                    ' * Licensed under the <%= pkg.license %> license. \r\n */\n\n',
                     sourceMap: true,
-                    sourceMapName: '<%= pkg.name %>.min.js.map'
+                    sourceMapName: 'dist/mutationwatcher.min.js.map'
                 },
                 files: {
-                    '<%= pkg.name %>.min.js': ['<%= pkg.name %>.js']
+                    'dist/mutationwatcher.min.js': ['MutationWatcher.js']
                 }
             }
         },
+        clean: ['dist', 'test/results'],
+        /*eslint camelcase: 0*/
         mocha_phantomjs: {
             ci: {
                 options: {
@@ -31,20 +51,18 @@ module.exports = function (grunt) {
                 files: {
                     src: ['test/index.html']
                 }
-            },
-        },
-        jshint: {
-            jshintrc: '.jshintrc',
-            files: ['<%= pkg.name %>.js']
+            }
         }
     });
 
+    grunt.loadNpmTasks('grunt-eslint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-mocha-phantomjs');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-bell');
 
-    grunt.registerTask('test', ['jshint', 'mocha_phantomjs:build']);
-    grunt.registerTask('travis', ['mocha_phantomjs:ci']);
-    grunt.registerTask('build', ['uglify']);
-    grunt.registerTask('default', ['test', 'build']);
+    grunt.registerTask('test', ['eslint', 'mocha_phantomjs:build']);
+    grunt.registerTask('ci', ['eslint', 'mocha_phantomjs:ci']);
+    grunt.registerTask('build', ['clean', 'uglify']);
+    grunt.registerTask('default', ['test', 'build', 'bell']);
 };

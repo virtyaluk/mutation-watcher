@@ -1,27 +1,51 @@
-# MutationWatcher 
+<h1 align="center">
+	<img width="256" height="256" src="https://rawgit.com/virtyaluk/mutation-watcher/master/media/mutation-watcher.png" alt="mutation-watcher">
+	<br>
+	<br>
+</h1>
+
+> **MutationWatcher** is a JavaScript library that comes to help make DOM mutation observing fast and easy.
+
 [![Build Status](https://travis-ci.org/virtyaluk/mutation-watcher.svg)](https://travis-ci.org/virtyaluk/mutation-watcher) [![Dependency Status](https://gemnasium.com/virtyaluk/mutation-watcher.svg)](https://gemnasium.com/virtyaluk/mutation-watcher) [![Code Climate](https://codeclimate.com/github/virtyaluk/mutation-watcher/badges/gpa.svg)](https://codeclimate.com/github/virtyaluk/mutation-watcher)
 
-**MutationWatcher** is a JavaScript library that comes to help make DOM mutation observing fast and easy.
+**MutationWatcher** uses [MutationObserver API](https://developer.mozilla.org/en/docs/Web/API/MutationObserver "MutationObserver API") (in new browsers) or old-fashioned (deprecated) way with [Mutation events](https://developer.mozilla.org/en-US/docs/DOM/Mutation_events "Mutation events") (in browsers that doesn't support newest API) as a way to react to changes in DOM. Actually it works in all browsers that support any of this APIs.
 
-**MutationWatcher** uses [MutationObserver API](https://developer.mozilla.org/en/docs/Web/API/MutationObserver "MutationObserver API") (in new browsers) or old-fashioned (deprecated) way with [Mutation events](https://developer.mozilla.org/en-US/docs/DOM/Mutation_events "Mutation events") (in browsers that doesn't support newest API) as a way to react to changes in DOM. It's actually works in all browsers that support any of this APIs.
-
-## Installation
+## Install
 
 bower:
 
 ```
-$ bower install mutation-wathcer
+$ bower install mutation-watcher
 ```
 
 npm
 
 ```
-$ npm install mutaton-watcher
+$ npm install mutation-watcher
 ```
 
-## API Reference
+## Usage
 
-The **MutationWatcher** library exports a single object - class called `MutationWatcher`. The class allows to create new instance of DOM mutation watcher.
+```js
+// Querying the target element
+var target = document.querySelector('#signin-button');
+
+// Options
+var options = { attributes: [ 'pressed', 'focused', 'active'] };
+
+// Creating the watcher instance
+var watcher = new MutationWatcher(function(mutationData) { console.log(mutationData); });
+
+// Finally starting the watcher
+watcher.watch(target, options);
+
+// Disconnecting from it
+watcher.disconnect();
+```
+
+## API
+
+The **MutationWatcher** library exports a single object - class called `MutationWatcher`. The class allows to create a new instance of DOM mutation watcher.
 
 ### Constructor
 
@@ -37,13 +61,13 @@ MutationWatcher(
 ```
 ###### Parameters
 
-- **`callback`**. *Optional.* Defaults to `null`. The function which will be called per each DOM mutation. The watcher will call this function with two arguments. The first is a **[MutationData](#mutation-data)** object. The second is this `MutationWatcher` instance.
+- **`callback`**. *Optional.* Defaults to `null`. The function which will be called per each DOM mutation. The watcher will call this function with two arguments. The first is a **[MutationData](#mutation-data)** object. The second is the current instance of a `MutationWatcher`.
 - **`customEvents`**. *Optional.* Defaults to `false` if `callback` provided and `true` if `callback` is `null`. If set to `true` then **[custom events](#custom-events)** will be triggered on specified target.
 
 ###### Note
 
 If the class instance created without any argument, then `customEvents` will be set to `true` by default.
-If no `callback` provided or it's `null` then all **[MutationData](#mutationdata)** objects will be added to queue and available to return using **[takeRecords](#takerecords)** method.
+If no `callback` provided or it's `null` then all **[MutationData](#mutationdata)** objects will be added to the queue and available to return using **[takeRecords](#takerecords)** method.
 
 ### Instance methods
 
@@ -65,8 +89,8 @@ void watch(
 
 ###### Parameters
 
-- **`target`**. *Optional.* Defaults to `window.document`. The [Node](https://developer.mozilla.org/en-US/docs/Web/API/Node "Node") or a string representing the css selector for target node on which to observe DOM mutations.
-- **`options`**. *Optional.* Defaults to `all`. An **[options](#mutationwatcher-options)** object, specifies which DOM mutations should be reported.
+- **`target`**. *Optional.* Defaults to `window.document`. The [Node](https://developer.mozilla.org/en-US/docs/Web/API/Node "Node") or a string representing the CSS selector for target node on which to observe DOM mutations.
+- **`options`**. *Optional.* Defaults to `all`. An **[options](#mutationwatcher-options)** object specifies which DOM mutations should be reported.
 
 ###### Note
 
@@ -103,52 +127,52 @@ Returns an Array of **[MutationData](#mutationdata)** objects.
 - **`attributeOldValue`** - Set to `true` if attributes is set to `true` and target's attribute value before the mutation needs to be recorded.
 - **`characterDataOldValue`** - Set to `true` if characterData is set to `true` and target's data before the mutation needs to be recorded.
 - **`matchAttributes`** - Set to an array of attribute local names (without namespace) if not all attribute mutations need to be observed.
-- **`matchElements`** - Set to an array of css selectors if not all element mutations need to be observed.
+- **`matchElements`** - Set to an array of CSS selectors or html elements if not all element mutations need to be observed.
+- **`matchCharacterDataElements`** - Set to an array of CSS selectors or html elements if not all characterData mutations need to be observed.
 - **`all`** - Shorthand. Set to true if `attributes`, `elements` and `characterData` need to be observed.
 
-#### Default options and Example usage
+#### Default options
 
-Options can be passed to **[watch()](#watch)** method as a plain string with single option or as an object with combination of options.
+Options can be passed to **[watch()](#watch)** method as a plain string with single option or as an object with a combination of options.
 
 ```js
-// Single option can be passed as a string:
-var singleOption = 'attributes';
+// Single option can be passed as a string
+var singleOption = 'attributes'; // or 'elements', 'characterData', 'all'
+watcher1.watch(callback, singleOption);
 
-// To combine options use object notation:
+// To combine options use object notation
 var optionsObj = {
 	elements: true,
 	subtree: true,
 	// Filter elements
-	matchElements: ['div.photo', 'div.wall-post']
+	matchElements: ['img.photo', 'div.wall-post', actualNodeElement]
 };
+watcher2.watch(callback, optionsObj);
 
-// or:
+// or
 optionsObj = {
-	elements: ['div.photo', 'div.wall-post'],
+	elements: ['img.photo', 'div.wall-post', actualNodeElement],
 	subtree: true
 };
+watcher3.watch(callback, optionsObj); 
 ```
 
 If **[watch()](#watch)** called without the options or it's `null` then default options will be used. The default options object looks following:
 
 ```js
-// Default options:
+var watcher = new MutationWatcher(callback);
+watcher.watch(target, null);
+console.log(watcher._config);
+/* prints out
 {
-	attributes: true,
-	elements: true,
-	characterData: true,
-	attributeOldValue: true
-	characterDataOldValue: true,
-	subtree: false
+    attributes: true,
+    elements: true,
+    characterData: true,
+    attributeOldValue: true
+    characterDataOldValue: true,
+    subtree: false
 }
-
-// or simple:
-{
-	all: true
-}
-
-// or even:
-'all'
+*/
 ```
 
 ### MutationData
@@ -166,14 +190,14 @@ If **[watch()](#watch)** called without the options or it's `null` then default 
  attributeName | String | Returns the local name of the changed attribute, or `null`. 
  attributeNamespace | String | Returns the namespace of the changed attribute, or `null`. 
  oldValue | String | The return value depends on the type. For attributes, it is the value of the changed attribute before the change. For characterData, it is the data of the changed node before the change. For elements, it is `null`. 
- newValue | String | The return value dependents on the type. For attributes, it is the value of the changed attribute after the change. For chracterData, it is the data of the changed node after the cahnge. For elements, it is `null`. 
+ newValue | String | The return value dependents on the type. For attributes, it is the value of the changed attribute after the change. For characterData, it is the data of the changed node after the change. For elements, it is `null`. 
 
 ### Custom Events
 
-It's possible to subscribe to custom mutation events instead of using `callback` passed to constructor.
-Default event names can be changed using static object called `customEventsNames` on **MutationWatcher** class.
+It's possible to subscribe to custom mutation events instead of using `callback` passed to the constructor.
+Default event names can be changed using the static object called `customEventsNames` on **MutationWatcher** class.
 
-To enable custom events on specific target, it needs to set `customEvents` property to `true` and invoke **[watch()](#watch)** method with or without any arguments.
+To enable custom events on a specific target, it needs to set `customEvents` property to `true` and invoke **[watch()](#watch)** method with or without any arguments.
 
 ```js
 var watcher = new MutationWatcher(null,  true);
@@ -186,30 +210,6 @@ myButton.addEventListener(MutationWatcher.customEventsNames.attributes, function
 }, false);
 ```
 
-### Example usage
-
-```js
-// Select the target element
-var target = 'button#signin-button';
-
-// Watcher options
-var options = {
-	attributes: ['pressed', 'focus', 'active'],
-	subtree: true
-};
-
-// Create a watcher instance
-var watcher = new MutationWatcher( function (mutationData) {
-	console.log(mutationData);
-});
-
-// Start watch for mutations
-watcher.watch(target, options);
-
-// Stop it
-watcher.disconnect();
-```
-
 ## Supported browsers:
 
 - Chrome
@@ -217,8 +217,6 @@ watcher.disconnect();
 - IE9+
 - Safari
 - Opera
-
-Even though IE9 is supported :)
 
 ## Running tests
 
@@ -233,6 +231,14 @@ Run them:
 ```shell
 $ grunt test
 ```
+
+## Changelog
+
+##### 1.0.2 - September 7, 2015
+* Moved from jshint to eslint
+* Test improvements
+* Updated npm dependencies
+* Bug fixes
 
 ## Author
 
